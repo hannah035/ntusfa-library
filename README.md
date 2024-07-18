@@ -69,3 +69,4 @@ A self-designed book management system specifically for ntusfa.
 - **書櫃主頁**：點入書櫃即可瀏覽書籍，並設有搜尋欄位。
 - **書籍詳情頁面**：顯示書籍詳細信息和借閱狀態，提供借閱按鈕。
 - **用戶個人資料頁面**：查看和編輯個人資料。
+- **已修改**：練習github推送。
