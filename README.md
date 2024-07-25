@@ -70,3 +70,6 @@ A self-designed book management system specifically for ntusfa.
 - **書籍詳情頁面**：顯示書籍詳細信息和借閱狀態，提供借閱按鈕。
 - **用戶個人資料頁面**：查看和編輯個人資料。
 <br/><br/>
+
+![image](https://github.com/user-attachments/assets/3a4f3376-dd7f-42ad-9ac8-87c06e4f1fbb)
+![image](https://github.com/user-attachments/assets/a4b6c69f-387b-4005-99ee-afb66455f71a)
