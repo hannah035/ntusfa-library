@@ -56,3 +56,4 @@ A self-designed book management system specifically for ntusfa.
 - **評論頁**：查看別人留下的評論。
 - **書籍詳情頁面**：顯示書籍詳細信息和借閱狀態，設有借閱按鈕及評論按鈕。
 <br/><br/>
+[快速筆記-2024-07-25-11-09-25.pdf](https://github.com/user-attachments/files/16371719/-2024-07-25-11-09-25.pdf)
