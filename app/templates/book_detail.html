@@ -1,0 +1,29 @@
+<!-- book_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{{ book['name'] }} - 書籍詳細信息</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/style.css') }}"
+		/>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="{{ url_for('index') }}">首頁</a></li>
+				<li><a href="{{ url_for('bookshelf') }}">書櫃</a></li>
+			</ul>
+		</nav>
+		<div class="content">
+			<h1>{{ book['name'] }}</h1>
+			<p><strong>書籍編號:</strong> {{ book['book_id'] }}</p>
+			<p>
+				<strong>封面:</strong>
+				<img src="{{ book['cover'] }}" alt="{{ book['name'] }}封面" />
+			</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,13 @@
+<!-- bookshelf.html -->
+{% extends "layout.html" %}
+
+{% block content %}
+<section id="bookshelf">
+    <h2>Bookshelf</h2>
+    <ul>
+        {% for book in books %}
+        <li><a href="{{ url_for('book_detail', isbn=book['book_id']) }}">{{ book['name'] }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

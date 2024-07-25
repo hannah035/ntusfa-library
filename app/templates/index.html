@@ -1,0 +1,29 @@
+<!-- index.html -->
+{% extends "layout.html" %}
+
+{% block content %}
+<section id="new-books">
+    <h2>New Books</h2>
+    <ul>
+        {% for book in new_books %}
+        <li>{{ book.title }} by {{ book.author }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section id="reviews">
+    <h2>Recent Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+        <li>{{ review.user }}: "{{ review.comment }}" on {{ review.book_title }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section id="bookshelves">
+    <h2>Bookshelves</h2>
+    <ul>
+        {% for shelf in bookshelves %}
+        <li><a href="{{ url_for('bookshelf') }}">{{ shelf }}</a></li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}
