@@ -22,14 +22,18 @@ def create_routes(app):
         for key in book_keys:
             book = current_app.redis.hgetall(key)
             book_details = {k: v for k, v in book.items()}
+            # added book_key in book_details
+            book_details['book_key'] = key
             books.append(book_details)
+            print(key, book_details)
         
         return render_template('bookshelf.html', books=books)
 
     @app.route('/book/<isbn>')
     def book_detail(isbn):
-        book_key = f'book:{isbn}'
-        
+        # book_key = f'book:{isbn}'
+        # 避免book:book:isbn的情況
+        book_key = f'{isbn}'
         # 獲取書籍詳細信息
         book = current_app.redis.hgetall(book_key)
         book_details = {k: v for k, v in book.items()}

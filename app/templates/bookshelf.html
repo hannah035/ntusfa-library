@@ -6,7 +6,9 @@
     <h2>Bookshelf</h2>
     <ul>
         {% for book in books %}
-        <li><a href="{{ url_for('book_detail', isbn=book['book_id']) }}">{{ book['name'] }}</a></li>
+        <!-- 改用 book_key 而非 book_id-->
+        <li><a href="{{ url_for('book_detail', isbn=book['book_key']) }}">{{ book['name'] }}</a></li>
+        <!-- <li><a href="{{ url_for('book_detail', isbn=book['book_id']) }}">{{ book['name'] }}</a></li>  -->
         {% endfor %}
     </ul>
 </section>
