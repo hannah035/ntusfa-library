@@ -1,0 +1,36 @@
+html {
+	font-size: 22px;
+}
+body {
+	padding: 1rem;
+}
+
+.card {
+	background-color: dodgerblue;
+	color: white;
+	padding: 1rem;
+	width: 8rem;
+	height: 10rem;
+}
+.cards {
+	max-width: 900px;
+	margin: 0 auto;
+	display: grid;
+	gap: 4rem;
+	justify-items: center;
+	align-items: center;
+}
+{% comment %} phone layout {% endcomment %}
+@media (min-width: 600px) {
+	.cards {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+}
+{% comment %} pc layout {% endcomment %}
+@media (min-width: 900px) {
+	.cards {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+}
