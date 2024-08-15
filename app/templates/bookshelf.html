@@ -1,16 +1,18 @@
 <!-- bookshelf.html -->
-{% extends "layout.html" %}
-
-{% block content %}
+{% extends "layout.html" %} {% block content %}
 <section id="bookshelf">
-    <h2>Bookshelf</h2>
-    <ul>
-        {% for book in books %}
-        <!-- 改用 book_key 而非 book_id-->
-        <li><a href="{{ url_for('book_detail', isbn=book['book_key']) }}">{{ book['name'] }}</a></li>
-        <!-- <li><a href="{{ url_for('book_detail', isbn=book['book_id']) }}">{{ book['name'] }}</a></li>  -->
-        {% endfor %}
-        <!-- test -->
-    </ul>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bookshelf.css') }}"/>
+	<h2>Bookshelf</h2>
+	<div class="cards">
+		{% for book in books%}
+		<div class="card">
+			<div class="book-title">
+				<a href="{{ url_for('book_detail', isbn=book['book_key']) }}"
+					>{{ book['name'] }}</a
+				>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
 </section>
 {% endblock %}

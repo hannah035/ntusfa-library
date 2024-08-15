@@ -20,14 +20,14 @@ body {
 	justify-items: center;
 	align-items: center;
 }
-{% comment %} phone layout {% endcomment %}
+/* phone layout */
 @media (min-width: 600px) {
 	.cards {
 		grid-template-columns: repeat(2, 1fr);
 	}
 	
 }
-{% comment %} pc layout {% endcomment %}
+/* pc layout */
 @media (min-width: 900px) {
 	.cards {
 		grid-template-columns: repeat(3, 1fr);
