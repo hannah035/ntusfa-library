@@ -1,11 +1,11 @@
-from flask import render_template, current_app
+from flask import render_template, current_app, request
 import time
 import math
 import pickle
 
 def load_dict():
     global mapp
-    with open("./datas/mapp.pkl", "rb") as f:
+    with open("ntusfa-library/app/datas/mapp.pickle", "rb") as f:
         mapp = pickle.load(f)
 
 def create_routes(app):
@@ -22,10 +22,39 @@ def create_routes(app):
         bookshelves = ['Shelf 1', 'Shelf 2', 'Shelf 3']
         
         return render_template('index.html', new_books=new_books, reviews=reviews, bookshelves=bookshelves)
+    
+    @app.route('/bookshelf/<page>', methods=['POST'])
+    def my_form_post(page):
+            text = request.form['query']
+            processed_text = text.upper()
+            book_keys=[]
+            for key in mapp.keys():
+                query = text
+                if query in key:
+                        book_keys.append('book:'+mapp[key])
+            books = []
+            page = int(page)
+            page_start = 1
+            page_end = math.ceil(len(book_keys)/24)
+            # showing from books[book_start] to books[book_end]
+            book_start = (page-1)*24
+            book_end = page*24
+            i = 0
 
+            for key in book_keys: 
+                if i>=book_start and i<book_end:
+                    book = current_app.redis.hgetall(key)
+                    book_details = {k: v for k, v in book.items()}
+                    # added book_key in book_details
+                    book_details['book_key'] = key
+                    books.append(book_details)
+                i+=1
+            return render_template('bookshelf.html', books=books, books_count =len(book_keys), page_current = page, page_start = page_start, page_end = page_end)
     @app.route('/bookshelf/<page>')
     def bookshelf(page):
-        book_keys = current_app.redis.keys('book:*')
+        book_keys=[]
+        for key in mapp.keys():
+            book_keys.append('book:'+mapp[key])
         books = []
         page = int(page)
         page_start = 1
@@ -59,4 +88,5 @@ def create_routes(app):
         return render_template('book_detail.html', book=book_details)
 
 def init_app(app):
+    load_dict()
     create_routes(app)

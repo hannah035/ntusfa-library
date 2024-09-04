@@ -1,5 +1,9 @@
 <!-- bookshelf.html -->
 {% extends "layout.html" %} {% block content %}
+<form method="POST">
+	<input name="query">
+	<input type="submit">
+</form>
 <section id="bookshelf">
 	<link
 		rel="stylesheet"
@@ -28,10 +32,10 @@
 						<div class="site-title">NTUSFA</div>
 					</div>
 					<div class="navigation">
-						<div class="nav-item">Home</div>
-						<div class="nav-item">Books</div>
-						<div class="nav-item">Reviews</div>
-						<div class="nav-item">About & Contact</div>
+						<a class="nav-item">Home</a>
+						<a class="nav-item">Books</a>
+						<a class="nav-item">Reviews</a>
+						<a class="nav-item">About & Contact</a>
 					</div>
 					<div class="search-icon">
 						<img
@@ -111,22 +115,33 @@
 
 		<div class="pagination-container">
 			<div class="pagination">
-				{% if page_current == page_start%}
+				{% if page_current != page_start %}
+					<a class="pagination-np" href="{{ url_for('bookshelf', page=page_current-1) }}">Previous</a>
+				{% endif %}
+
+				{% if page_current == page_start %}
 					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_start) }}">{{ page_start }}</a>
-					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+1) }}">{{ page_start+1 }}</a>
-					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+2) }}">{{ page_start+2 }}</a>
-					<a class="pagination-next" href="{{ url_for('bookshelf', page=page_current+1) }}">Next</a>
+					{% if page_start+1 <= page_end %}
+						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+1) }}">{{ page_start+1 }}</a>
+					{% endif %}
+					{% if page_start+2 <= page_end %}
+						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+2) }}">{{ page_start+1 }}</a>
+					{% endif %}
 				{% elif page_current == page_end %}
-					<a class="pagination-next" href="{{ url_for('bookshelf', page=page_current-1) }}">Previous</a>
-					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_end-2) }}">{{ page_end-2 }}</a>
-					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_end-1) }}">{{ page_end-1 }}</a>
+					{% if page_end-2 >= page_start %}
+						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_end-2) }}">{{ page_end-2 }}</a>
+					{% endif %}
+					{% if page_end-1 >= page_start %}
+						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_end-2) }}">{{ page_end-1 }}</a>
+					{% endif %}
 					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_end) }}">{{ page_end }}</a>
 				{% else %}
-					<a class="pagination-next" href="{{ url_for('bookshelf', page=page_current-1) }}">Previous</a>
 					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_current-1) }}">{{ page_current-1 }}</a>
 					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_current) }}">{{ page_current }}</a>
 					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_current+1) }}">{{ page_current+1 }}</a>
-					<a class="pagination-next" href="{{ url_for('bookshelf', page=page_current+1) }}">Next</a>
+				{% endif %}
+				{% if page_current != page_end%}
+					<a class="pagination-np" href="{{ url_for('bookshelf', page=page_current-1) }}">Next</a>
 				{% endif %}
 				
 			</div>

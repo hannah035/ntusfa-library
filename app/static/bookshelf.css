@@ -1,3 +1,7 @@
+a{
+	all:unset;
+}
+
 .books-container {
 	background-color: rgba(255, 255, 255, 1);
 	display: flex;
@@ -302,7 +306,6 @@
 	width: 85%; /* 85% of the card width */
 	aspect-ratio: 1 / 1; 
 	overflow: hidden;
-	background-color: rgba(217, 217, 217, 1);
 	margin: 1vw 0; /* Space around the thumbnail */
 	border-radius: 0.5vw; /* Rounded corners */
 	flex-shrink: 0; /* Prevent shrinking */
@@ -362,7 +365,7 @@
 }
 
 .pagination-number,
-.pagination-next {
+.pagination-np {
 	display: flex;
 	justify-content: center;
 	align-items: center;
