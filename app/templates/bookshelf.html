@@ -5,45 +5,175 @@
 		rel="stylesheet"
 		href="{{ url_for('static', filename='bookshelf.css') }}"
 	/>
-	<h2>Bookshelf</h2>
-	<input id="search_bar" type="text" />
-	<div class="cards">
-		{% for book in books%}
-		<div class="card">
-			<div class="book-title">
-				<img
-					src="{{ book['cover'] }}"
-					alt="{{book['cover']}}"
-					width="100px"
-					height="100px"
-				/>
-				<a href="{{ url_for('book_detail', isbn=book['book_key']) }}"
-					>{{ book['name'] }}</a
-				>
+
+	<div class="books-container">
+		<div class="header-container">
+			<div class="header-content">
+				<div class="header-inner">
+					<div class="branding">
+						<img
+							loading="lazy"
+							srcset="
+								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=100   100w,
+								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=200   200w,
+								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=400   400w,
+								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=800   800w,
+								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1200 1200w,
+								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1600 1600w,
+								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=2000 2000w,
+								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345
+							"
+							class="logo"
+						/>
+						<div class="site-title">NTUSFA</div>
+					</div>
+					<div class="navigation">
+						<div class="nav-item">Home</div>
+						<div class="nav-item">Books</div>
+						<div class="nav-item">Reviews</div>
+						<div class="nav-item">About & Contact</div>
+					</div>
+					<div class="search-icon">
+						<img
+							loading="lazy"
+							src="https://cdn.builder.io/api/v1/image/assets/TEMP/c3aae2a3c31f9f76c70e94f2fb6e872adec2550fa3b3b384425775c9295a778a?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
+							class="icon"
+						/>
+					</div>
+				</div>
 			</div>
 		</div>
-		{% endfor %}
+
+		<div class="banner">
+			<img
+				loading="lazy"
+				srcset="
+					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=100   100w,
+					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=200   200w,
+					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=400   400w,
+					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=800   800w,
+					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1200 1200w,
+					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1600 1600w,
+					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=2000 2000w,
+					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345
+				"
+				class="banner-image"
+			/>
+			<div class="banner-content">
+				<div class="banner-title">Book</div>
+				<div class="breadcrumb">
+					<div class="breadcrumb-home">Home</div>
+					<img
+						loading="lazy"
+						src="https://cdn.builder.io/api/v1/image/assets/TEMP/db13939cabd153a09de09c25864d1f622bda5d116dbe6552d6605aca283c27a4?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
+						class="breadcrumb-icon"
+					/>
+					<div class="breadcrumb-shop">Shop</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="filters-container">
+			<div class="filters-header">
+				<div class="filter">
+					<img
+						loading="lazy"
+						src="https://cdn.builder.io/api/v1/image/assets/TEMP/d9889a04eb6c2c4b56eed2007281a7e5a6a8f4b12ed38c874a2483e2990c951d?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
+						class="filter-icon"
+					/>
+					<div>Filter</div>
+				</div>
+				<div class="filters-summary">
+					<div class="divider"></div>
+					<div class="results-info">Showing {{(page_current-1)*24+1}}–{{page_current*24}} of {{books_count}} results</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="product-list">
+			{% for book in books%}
+
+			<a class="product-card" href="{{ url_for('book_detail', isbn=book['book_key']) }}">
+				<div class="product-thumbnail">
+					<img
+						src="{{ book['cover'] }}"
+						alt="{{ book['cover'] }}"
+					/>
+				</div>
+				<div class="product-title-wrap">
+					<div class="product-title">
+						{{ book['name'] }}
+					</div>
+				</div>
+			</a>
+			{% endfor %}
+		</div>
+
+		<div class="pagination-container">
+			<div class="pagination">
+				{% if page_current == page_start%}
+					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_start) }}">{{ page_start }}</a>
+					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+1) }}">{{ page_start+1 }}</a>
+					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+2) }}">{{ page_start+2 }}</a>
+					<a class="pagination-next" href="{{ url_for('bookshelf', page=page_current+1) }}">Next</a>
+				{% elif page_current == page_end %}
+					<a class="pagination-next" href="{{ url_for('bookshelf', page=page_current-1) }}">Previous</a>
+					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_end-2) }}">{{ page_end-2 }}</a>
+					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_end-1) }}">{{ page_end-1 }}</a>
+					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_end) }}">{{ page_end }}</a>
+				{% else %}
+					<a class="pagination-next" href="{{ url_for('bookshelf', page=page_current-1) }}">Previous</a>
+					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_current-1) }}">{{ page_current-1 }}</a>
+					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_current) }}">{{ page_current }}</a>
+					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_current+1) }}">{{ page_current+1 }}</a>
+					<a class="pagination-next" href="{{ url_for('bookshelf', page=page_current+1) }}">Next</a>
+				{% endif %}
+				
+			</div>
+		</div>
+
+		<div class="footer">
+			<div class="footer-inner">
+				<div class="footer-section">
+					<div class="footer-title">臺灣大學星艦學院科幻社</div>
+					<div class="footer-address">
+						第二學生活動中心
+						<br />
+						9F 921
+						<br />
+						ntusfa@gipo.ntu.edu.tw
+					</div>
+				</div>
+				<div class="footer-section">
+					<div class="footer-links-title">Links</div>
+					<div class="footer-link">IG</div>
+					<div class="footer-link">FB</div>
+					<div class="footer-link">About</div>
+					<div class="footer-link">Contact</div>
+				</div>
+				<div class="footer-section">
+					<div class="footer-help-title">Join Us</div>
+					<div class="footer-help-link">入社表單</div>
+					<div class="footer-help-link">社團規則</div>
+					<div class="footer-help-link">活動報名</div>
+				</div>
+				<div class="footer-section">
+					<div class="footer-newsletter-title">Say Anything</div>
+					<div class="footer-newsletter">
+						<div class="newsletter-prompt">
+							講師推薦、意見回饋......等
+						</div>
+						<div class="newsletter-divider"></div>
+						<div class="newsletter-submit">Transmit</div>
+						<div class="newsletter-divider"></div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-divider"></div>
+			<div class="footer-copyright">2024summer</div>
+		</div>
 	</div>
 </section>
 
-<script>
-	const searchBar = document.getElementById("search_bar")
 
-	function search_book() {
-		let input = document.getElementById("search_bar").value
-		input = input.toLowerCase()
-		let books = document.getElementsByClassName("book-title")
-
-		for (i = 0; i < books.length; i++) {
-			if (!books[i].innerHTML.toLowerCase().includes(input)) {
-				books[i].parentElement.style.display = "none"
-			} else {
-				books[i].parentElement.style.display = "block"
-			}
-		}
-	}
-	searchBar.addEventListener("input", () => {
-		search_book()
-	})
-</script>
 {% endblock %}

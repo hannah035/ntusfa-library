@@ -22,7 +22,7 @@
     <h2>Bookshelves</h2>
     <ul>
         {% for shelf in bookshelves %}
-        <li><a href="{{ url_for('bookshelf') }}">{{ shelf }}</a></li>
+        <li><a href="{{ url_for('bookshelf', page=1) }}">{{ shelf }}</a></li>
         {% endfor %}
     </ul>
 </section>

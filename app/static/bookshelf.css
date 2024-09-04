@@ -1,36 +1,497 @@
-html {
-	font-size: 22px;
-}
-body {
-	padding: 1rem;
+.books-container {
+	background-color: rgba(255, 255, 255, 1);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 }
 
-.card {
-	background-color: dodgerblue;
-	color: white;
-	padding: 1rem;
-	width: 8rem;
-	height: 10rem;
+.header-container {
+	background-color: rgba(255, 255, 255, 1);
+	z-index: 10;
+	display: flex;
+	min-height: 3vw;
+	/* 根據視窗寬度設置最小高度 */
+	align-items: center;
+	justify-content: center;
+	/* 水平居中對齊 */
+	padding: 0 5vw;
+	/* 使用視窗寬度設置內邊距 */
+	flex-wrap: nowrap;
+	/* 不允許換行，保持比例 */
 }
-.cards {
-	max-width: 900px;
-	margin: 0 auto;
-	display: grid;
-	gap: 4rem;
-	justify-items: center;
+
+.header-content {
+	display: flex;
+	width: 100%;
+	max-width: 100vw;
+	/* 限制寬度為視窗的100% */
+	align-items: center;
+	justify-content: space-between;
+	padding: 2vw 2vw;
+	/* 使用視窗寬度設置內邊距 */
+}
+
+.header-inner {
+	display: flex;
+	width: 100%;
+	max-width: 90vw;
+	/* 限制內部內容的最大寬度為視窗的90% */
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	/* 不允許換行 */
+	gap: 2vw;
+	/* 使用視窗寬度設置間距 */
+}
+
+.branding {
+	display: flex;
+	align-items: center;
+	gap: 1vw;
+	/* 使用視窗寬度設置間距 */
+	color: rgba(0, 0, 0, 1);
+	font: 700 2.5vw Montserrat, sans-serif;
+	/* 使用視窗寬度設置字體大小 */
+}
+
+.logo {
+	width: 3.5vw;
+	/* 使用視窗寬度設置標誌寬度 */
+	object-fit: contain;
+}
+
+.site-title {
+	white-space: nowrap;
+}
+
+.navigation {
+	display: flex;
+	align-items: center;
+	gap: 2vw;
+	/* 使用視窗寬度設置間距 */
+	font: 500 1vw Poppins, sans-serif;
+	/* 使用視窗寬度設置字體大小 */
+}
+
+.nav-item {
+	white-space: nowrap;
+}
+
+.search-icon {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	width: 1vw;
+	/* 使用視窗寬度設置寬度 */
+}
+
+.icon {
+	width: 2vw;
+	/* 使用視窗寬度設置圖標寬度 */
+	object-fit: contain;
+}
+
+/* banner----------------------------------------------------------------------------------------------- */
+.banner {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 100%;
+	align-items: center;
+	font-family: Poppins, sans-serif;
+	color: rgba(0, 0, 0, 1);
+	white-space: nowrap;
+	justify-content: center;
+	padding: calc(8vw) calc(5vw);
+	/* Padding based on width */
+	height: calc(100vw * 0.07);
+	/* Height set as 30% of the viewport width */
+	box-sizing: border-box;
+}
+
+@media (max-width: 991px) {
+	.banner {
+		white-space: initial;
+		padding: calc(10vw) calc(5vw);
+		/* Adjust padding for smaller screens */
+		height: calc(100vw * 0.4);
+		/* Adjust height ratio for smaller screens */
+	}
+}
+
+.banner-image {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.banner-content {
+	position: relative;
+	display: flex;
+	margin-bottom: calc(-2vw);
+	/* Adjusted based on width */
+	width: auto;
+	max-width: 100%;
+	flex-direction: column;
 	align-items: center;
 }
-/* phone layout */
-@media (min-width: 600px) {
-	.cards {
-		grid-template-columns: repeat(2, 1fr);
-	}
-	
-}
-/* pc layout */
-@media (min-width: 900px) {
-	.cards {
-		grid-template-columns: repeat(3, 1fr);
-	}
 
+@media (max-width: 991px) {
+	.banner-content {
+		margin-bottom: calc(1vw);
+		/* Adjusted for small screens */
+		white-space: initial;
+	}
+}
+
+.banner-title {
+	font-size: 4vw;
+	/* Font size based on width */
+	font-weight: 500;
+}
+
+@media (max-width: 991px) {
+	.banner-title {
+		margin-right: 1vw;
+		/* Adjusted for small screens */
+		font-size: 5vw;
+		/* Adjust font size for smaller screens */
+	}
+}
+
+.breadcrumb {
+	display: flex;
+	gap: 0.5vw;
+	/* Adjust gap based on width */
+	font-size: 1.5vw;
+	/* Font size based on width */
+}
+
+@media (max-width: 991px) {
+	.breadcrumb {
+		white-space: initial;
+	}
+}
+
+.breadcrumb-home {
+	font-weight: 500;
+	flex-grow: 1;
+}
+
+.breadcrumb-icon {
+	aspect-ratio: 1;
+	object-fit: contain;
+	object-position: center;
+	width: 2vw;
+	/* Adjusted to match width */
+	margin: auto 0;
+}
+
+.breadcrumb-shop {
+	font-weight: 300;
+}
+
+/* filter ----------------------------------------------------------------------------------------------- */
+.filters-container {
+	background-color: rgba(249, 241, 231, 1);
+	display: flex;
+	width: 100%;
+	gap: 2vw;
+	/* Similar gap to the header */
+	font-family: Poppins, sans-serif;
+	color: rgba(0, 0, 0, 1);
+	font-weight: 400;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 2vw 5vw;
+	/* Similar padding to the header */
+}
+
+.filters-header {
+	display: flex;
+	gap: 2vw;
+	/* Similar gap to the header */
+	margin: auto 0;
+}
+
+.filter {
+	display: flex;
+	gap: 1vw;
+	/* Similar gap to the header */
+	font-size: 1vw;
+	/* Adjusted to match the header font size */
+	white-space: nowrap;
+	margin: auto 0;
+	align-items: center;
+	/* Center the content vertically */
+}
+
+.filter-icon {
+	aspect-ratio: 1;
+	object-fit: contain;
+	object-position: center;
+	width: 2vw;
+	/* Similar width to the header icons */
+	margin: auto 0;
+}
+
+.filters-summary {
+	display: flex;
+	gap: 2vw;
+	/* Similar gap to the header */
+	font-size: 1vw;
+	/* Adjusted to match the header font size */
+}
+
+.divider {
+	width: 0.1vw;
+	height: 3vw;
+	background: linear-gradient(
+		to bottom,
+		rgba(159, 159, 159, 1),
+		rgba(217, 217, 217, 1)
+	);
+	border: none;
+	/* Remove border */
+}
+
+.results-info {
+	flex-basis: auto;
+	margin: auto 0;
+}
+
+/*books ----------------------------------------------------------------------------------- */
+.product-list {
+	display: grid;
+	grid-template-columns: repeat(
+		auto-fit,
+		minmax(15rem, 1fr)
+	); /* Automatically adjusts the number of columns */
+	gap: 2vw 3vw; /* Horizontal and vertical space */
+	justify-content: center; /* Center the grid within the container */
+	width: 100%;
+	padding: 4vw 5vw; /* Padding */
+	box-sizing: border-box; /* Includes padding in the element's width/height */
+}
+
+.product-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #fff;
+	padding: 1vw; /* Padding inside the card */
+	text-align: center;
+	box-shadow: 0 0.3vw 0.6vw rgba(0, 0, 0, 0.1); /* Softer shadow */
+	border-radius: 0.5vw; /* Smoother corners */
+	transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effects */
+	overflow: hidden; /* Ensure content stays within bounds */
+	aspect-ratio: 3 / 4; /* Maintain consistent card aspect ratio */
+	margin-bottom: 1vw; /* Reduced margin-bottom for smaller space under the card */
+	text-decoration: none; /* Remove underline from title */
+}
+
+.product-card:hover {
+	transform: translateY(-0.5vw); /* Lift on hover */
+	box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.product-thumbnail {
+	width: 85%; /* 85% of the card width */
+	aspect-ratio: 1 / 1; 
+	overflow: hidden;
+	background-color: rgba(217, 217, 217, 1);
+	margin: 1vw 0; /* Space around the thumbnail */
+	border-radius: 0.5vw; /* Rounded corners */
+	flex-shrink: 0; /* Prevent shrinking */
+}
+.product-thumbnail img {
+	width: 100%;
+	height: 100%;	
+	object-fit: contain;
+	max-width: 100%; /* Constrain the image's width to the parent div */
+	max-height: 100%; /* Constrain the image's height to the parent div */
+}
+
+.product-title-wrap {
+	width: 100%;
+	aspect-ratio: 1/4;
+}
+
+.product-title {
+	margin-bottom: 0; /* Remove bottom margin */
+	padding: 0; /* Remove padding */
+	font-size: 1rem; /* Font size based on rem */
+	font-weight: 500;
+	color: #333; /* Slightly darker text for better readability */
+	line-height: 1.4; /* Improved line-height for readability */
+	text-transform: capitalize; /* Capitalize each word */
+	top:50%;
+	position: relative;
+	transform: translateY(-50%); 
+}
+
+/*pagination ---------------------------------------------------------------------------------------------------- */
+.pagination-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	padding-top: 3vh;
+	font-size: 1.6rem;
+	font-weight: 400;
+	max-width: 100%;
+}
+.pagination a{
+	display: block;
+	text-decoration: none;
+}
+
+@media (max-width: 991px) {
+	.pagination {
+		margin-top: 4vh;
+	}
+}
+
+.pagination-number,
+.pagination-next {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem 2rem;
+	border-radius: 1rem;
+	background-color: rgba(249, 241, 231, 1);
+	color: black;
+	cursor: pointer;
+}
+
+.pagination-number.active {
+	background-color: #b88e2f;
+	color: white;
+}
+
+@media (max-width: 991px) {
+	.pagination-number,
+	.pagination-next {
+		padding: 0.8rem 1.6rem;
+		white-space: initial;
+	}
+}
+
+/*footer-------------------------------------------------------------------------------------------------- */
+.footer {
+	background-color: rgba(255, 255, 255, 1);
+	border-top: 0.1vw solid rgba(0, 0, 0, 0.17);
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	align-items: start;
+	font-family: Poppins, sans-serif;
+	padding: 5vw;
+	/* Use vw for padding */
+	box-sizing: border-box;
+	/* Ensure padding and borders are included in width/height calculations */
+	margin-top: 5vw;
+	/* Add margin above the footer */
+}
+
+.footer-inner {
+	display: flex;
+	width: 100%;
+	max-width: 90vw;
+	/* Limit width for content */
+	height: 50%;
+	/* Adjusted to use a percentage of the parent's calculated height */
+	align-items: start;
+	gap: 1.5vw;
+	/* Adjusted gap using vw */
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.footer-section {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	/* Allow sections to grow/shrink */
+}
+
+.footer-title {
+	color: rgba(0, 0, 0, 1);
+	font-size: 2vw;
+	/* Font size based on viewport width */
+	font-weight: 700;
+}
+
+.footer-address {
+	color: rgba(159, 159, 159, 1);
+	font-size: 1.5vw;
+	/* Font size based on viewport width */
+	font-weight: 400;
+	margin-top: 2.5vw;
+	width: 20vw;
+}
+
+.footer-links-title,
+.footer-help-title,
+.footer-newsletter-title {
+	font-size: 1.25vw;
+	color: rgba(0, 0, 0, 1);
+	font-weight: 500;
+}
+
+.footer-link,
+.footer-help-link {
+	color: rgba(159, 159, 159, 1);
+	margin-top: 2.5vw;
+	font-size: 1.25vw;
+}
+
+.footer-newsletter {
+	display: flex;
+	margin-top: 3.5vw;
+	gap: 1vw;
+	font-size: 1.25vw;
+	white-space: nowrap;
+}
+
+.newsletter-prompt {
+	color: rgba(159, 159, 159, 1);
+	font-weight: 400;
+}
+
+.newsletter-divider {
+	height: 0.1vw;
+	border: 0.1vw solid rgba(0, 0, 0, 1);
+}
+
+.newsletter-submit {
+	color: rgba(0, 0, 0, 1);
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.footer-divider {
+	align-self: center;
+	margin-top: 3vw;
+	width: 80vw;
+	height: 0.1vw;
+	border: 0.1vw solid rgba(217, 217, 217, 1);
+}
+
+.footer-copyright {
+	color: rgba(0, 0, 0, 1);
+	font-size: 1.25vw;
+	font-weight: 400;
+	margin-top: 2.5vw;
+	text-align: center;
+	width: 100%;
 }
