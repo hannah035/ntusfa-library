@@ -8,12 +8,6 @@
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('index') }}">首頁</a></li>
-            <li><a href="{{ url_for('bookshelf', page=1) }}">書櫃</a></li>
-        </ul>
-    </nav>
     <div class="content">
         {% block content %}{% endblock %}
     </div>

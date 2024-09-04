@@ -1,9 +1,6 @@
 <!-- bookshelf.html -->
 {% extends "layout.html" %} {% block content %}
-<form method="POST">
-	<input name="query">
-	<input type="submit">
-</form>
+
 <section id="bookshelf">
 	<link
 		rel="stylesheet"
@@ -35,14 +32,14 @@
 						<a class="nav-item">Home</a>
 						<a class="nav-item">Books</a>
 						<a class="nav-item">Reviews</a>
-						<a class="nav-item">About & Contact</a>
+						<a class="nav-item" href="#footer">About & Contact</a>
 					</div>
 					<div class="search-icon">
-						<img
-							loading="lazy"
-							src="https://cdn.builder.io/api/v1/image/assets/TEMP/c3aae2a3c31f9f76c70e94f2fb6e872adec2550fa3b3b384425775c9295a778a?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
-							class="icon"
-						/>
+						<form method="POST">
+							<input id="search_bar" type="text"
+							name="query">
+						</form>
+						
 					</div>
 				</div>
 			</div>
@@ -72,7 +69,7 @@
 						src="https://cdn.builder.io/api/v1/image/assets/TEMP/db13939cabd153a09de09c25864d1f622bda5d116dbe6552d6605aca283c27a4?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
 						class="breadcrumb-icon"
 					/>
-					<div class="breadcrumb-shop">Shop</div>
+					<div class="breadcrumb-shop">Book</div>
 				</div>
 			</div>
 		</div>
@@ -100,6 +97,7 @@
 			<a class="product-card" href="{{ url_for('book_detail', isbn=book['book_key']) }}">
 				<div class="product-thumbnail">
 					<img
+						loading="lazy"
 						src="{{ book['cover'] }}"
 						alt="{{ book['cover'] }}"
 					/>
@@ -125,7 +123,7 @@
 						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+1) }}">{{ page_start+1 }}</a>
 					{% endif %}
 					{% if page_start+2 <= page_end %}
-						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+2) }}">{{ page_start+1 }}</a>
+						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+2) }}">{{ page_start+2 }}</a>
 					{% endif %}
 				{% elif page_current == page_end %}
 					{% if page_end-2 >= page_start %}
@@ -147,7 +145,7 @@
 			</div>
 		</div>
 
-		<div class="footer">
+		<div class="footer" id="footer">
 			<div class="footer-inner">
 				<div class="footer-section">
 					<div class="footer-title">臺灣大學星艦學院科幻社</div>

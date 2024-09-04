@@ -3,6 +3,9 @@ import time
 import math
 import pickle
 
+
+books_per_page = 48
+
 def load_dict():
     global mapp
     with open("ntusfa-library/app/datas/mapp.pickle", "rb") as f:
@@ -26,19 +29,18 @@ def create_routes(app):
     @app.route('/bookshelf/<page>', methods=['POST'])
     def my_form_post(page):
             text = request.form['query']
-            processed_text = text.upper()
             book_keys=[]
             for key in mapp.keys():
                 query = text
                 if query in key:
                         book_keys.append('book:'+mapp[key])
             books = []
-            page = int(page)
+            page = 1
             page_start = 1
-            page_end = math.ceil(len(book_keys)/24)
+            page_end = math.ceil(len(book_keys)/books_per_page)
             # showing from books[book_start] to books[book_end]
-            book_start = (page-1)*24
-            book_end = page*24
+            book_start = (page-1)*books_per_page
+            book_end = page*books_per_page
             i = 0
 
             for key in book_keys: 
@@ -49,19 +51,21 @@ def create_routes(app):
                     book_details['book_key'] = key
                     books.append(book_details)
                 i+=1
+            book_end = i + book_start
             return render_template('bookshelf.html', books=books, books_count =len(book_keys), page_current = page, page_start = page_start, page_end = page_end)
     @app.route('/bookshelf/<page>')
     def bookshelf(page):
+        
         book_keys=[]
         for key in mapp.keys():
             book_keys.append('book:'+mapp[key])
         books = []
         page = int(page)
         page_start = 1
-        page_end = math.ceil(len(book_keys)/24)
+        page_end = math.ceil(len(book_keys)/books_per_page)
         # showing from books[book_start] to books[book_end]
-        book_start = (page-1)*24
-        book_end = page*24
+        book_start = (page-1)*books_per_page
+        book_end = page*books_per_page
         i = 0
 
         for key in book_keys: 
@@ -72,8 +76,8 @@ def create_routes(app):
                 book_details['book_key'] = key
                 books.append(book_details)
             i+=1
-            
-
+        book_end = i+book_start 
+        print(books)
         return render_template('bookshelf.html', books=books, books_count =len(book_keys), page_current = page, page_start = page_start, page_end = page_end)
 
     @app.route('/book/<isbn>')
