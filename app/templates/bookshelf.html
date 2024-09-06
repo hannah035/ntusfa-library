@@ -1,192 +1,296 @@
 <!-- bookshelf.html -->
 {% extends "layout.html" %} {% block content %}
 
-<section id="bookshelf">
-	<link
-		rel="stylesheet"
-		href="{{ url_for('static', filename='bookshelf.css') }}"
-	/>
-
-	<div class="books-container">
-		<div class="header-container">
-			<div class="header-content">
-				<div class="header-inner">
-					<div class="branding">
-						<img
-							loading="lazy"
-							srcset="
-								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=100   100w,
-								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=200   200w,
-								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=400   400w,
-								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=800   800w,
-								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1200 1200w,
-								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1600 1600w,
-								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=2000 2000w,
-								https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345
-							"
-							class="logo"
-						/>
-						<div class="site-title">NTUSFA</div>
-					</div>
-					<div class="navigation">
-						<a class="nav-item">Home</a>
-						<a class="nav-item">Books</a>
-						<a class="nav-item">Reviews</a>
-						<a class="nav-item" href="#footer">About & Contact</a>
-					</div>
-					<div class="search-icon">
-						<form method="POST">
-							<input id="search_bar" type="text"
-							name="query">
-						</form>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="banner">
-			<img
-				loading="lazy"
-				srcset="
-					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=100   100w,
-					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=200   200w,
-					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=400   400w,
-					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=800   800w,
-					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1200 1200w,
-					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1600 1600w,
-					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=2000 2000w,
-					https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345
-				"
-				class="banner-image"
+<div class="grid-container" id="split-container">
+	<div class="left-side">
+		<section id="bookshelf">
+			<link
+				rel="stylesheet"
+				href="{{ url_for('static', filename='bookshelf.css') }}"
 			/>
-			<div class="banner-content">
-				<div class="banner-title">Book</div>
-				<div class="breadcrumb">
-					<div class="breadcrumb-home">Home</div>
-					<img
-						loading="lazy"
-						src="https://cdn.builder.io/api/v1/image/assets/TEMP/db13939cabd153a09de09c25864d1f622bda5d116dbe6552d6605aca283c27a4?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
-						class="breadcrumb-icon"
-					/>
-					<div class="breadcrumb-shop">Book</div>
-				</div>
-			</div>
-		</div>
+			<link
+				rel="stylesheet"
+				href="{{ url_for('static', filename='split.css') }}"
+			/>
 
-		<div class="filters-container">
-			<div class="filters-header">
-				<div class="filter">
-					<img
-						loading="lazy"
-						src="https://cdn.builder.io/api/v1/image/assets/TEMP/d9889a04eb6c2c4b56eed2007281a7e5a6a8f4b12ed38c874a2483e2990c951d?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
-						class="filter-icon"
-					/>
-					<div>Filter</div>
-				</div>
-				<div class="filters-summary">
-					<div class="divider"></div>
-					<div class="results-info">Showing {{(page_current-1)*24+1}}–{{page_current*24}} of {{books_count}} results</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="product-list">
-			{% for book in books%}
-
-			<a class="product-card" href="{{ url_for('book_detail', isbn=book['book_key']) }}">
-				<div class="product-thumbnail">
-					<img
-						loading="lazy"
-						src="{{ book['cover'] }}"
-						alt="{{ book['cover'] }}"
-					/>
-				</div>
-				<div class="product-title-wrap">
-					<div class="product-title">
-						{{ book['name'] }}
-					</div>
-				</div>
-			</a>
-			{% endfor %}
-		</div>
-
-		<div class="pagination-container">
-			<div class="pagination">
-				{% if page_current != page_start %}
-					<a class="pagination-np" href="{{ url_for('bookshelf', page=page_current-1) }}">Previous</a>
-				{% endif %}
-
-				{% if page_current == page_start %}
-					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_start) }}">{{ page_start }}</a>
-					{% if page_start+1 <= page_end %}
-						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+1) }}">{{ page_start+1 }}</a>
-					{% endif %}
-					{% if page_start+2 <= page_end %}
-						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_start+2) }}">{{ page_start+2 }}</a>
-					{% endif %}
-				{% elif page_current == page_end %}
-					{% if page_end-2 >= page_start %}
-						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_end-2) }}">{{ page_end-2 }}</a>
-					{% endif %}
-					{% if page_end-1 >= page_start %}
-						<a class="pagination-number" href="{{ url_for('bookshelf', page=page_end-2) }}">{{ page_end-1 }}</a>
-					{% endif %}
-					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_end) }}">{{ page_end }}</a>
-				{% else %}
-					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_current-1) }}">{{ page_current-1 }}</a>
-					<a class="pagination-number active" href="{{ url_for('bookshelf', page=page_current) }}">{{ page_current }}</a>
-					<a class="pagination-number" href="{{ url_for('bookshelf', page=page_current+1) }}">{{ page_current+1 }}</a>
-				{% endif %}
-				{% if page_current != page_end%}
-					<a class="pagination-np" href="{{ url_for('bookshelf', page=page_current-1) }}">Next</a>
-				{% endif %}
-				
-			</div>
-		</div>
-
-		<div class="footer" id="footer">
-			<div class="footer-inner">
-				<div class="footer-section">
-					<div class="footer-title">臺灣大學星艦學院科幻社</div>
-					<div class="footer-address">
-						第二學生活動中心
-						<br />
-						9F 921
-						<br />
-						ntusfa@gipo.ntu.edu.tw
-					</div>
-				</div>
-				<div class="footer-section">
-					<div class="footer-links-title">Links</div>
-					<div class="footer-link">IG</div>
-					<div class="footer-link">FB</div>
-					<div class="footer-link">About</div>
-					<div class="footer-link">Contact</div>
-				</div>
-				<div class="footer-section">
-					<div class="footer-help-title">Join Us</div>
-					<div class="footer-help-link">入社表單</div>
-					<div class="footer-help-link">社團規則</div>
-					<div class="footer-help-link">活動報名</div>
-				</div>
-				<div class="footer-section">
-					<div class="footer-newsletter-title">Say Anything</div>
-					<div class="footer-newsletter">
-						<div class="newsletter-prompt">
-							講師推薦、意見回饋......等
+			<div class="books-container">
+				<div class="header-container">
+					<div class="header-content">
+						<div class="header-inner">
+							<div class="branding">
+								<img
+									loading="lazy"
+									srcset="
+										https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=100   100w,
+										https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=200   200w,
+										https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=400   400w,
+										https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=800   800w,
+										https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1200 1200w,
+										https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1600 1600w,
+										https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=2000 2000w,
+										https://cdn.builder.io/api/v1/image/assets/TEMP/223576e6f0c1efef68eba4892f4ddb28de50cdafce108ed6593f785139728f8f?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345
+									"
+									class="logo"
+								/>
+								<div class="site-title">NTUSFA</div>
+							</div>
+							<div class="navigation">
+								<a class="nav-item">Home</a>
+								<a class="nav-item">Books</a>
+								<a class="nav-item">Reviews</a>
+								<a class="nav-item" href="#footer"
+									>About & Contact</a
+								>
+							</div>
+							<div class="search-icon">
+								<form method="POST">
+									<input
+										id="search_bar"
+										type="text"
+										name="query"
+									/>
+								</form>
+							</div>
 						</div>
-						<div class="newsletter-divider"></div>
-						<div class="newsletter-submit">Transmit</div>
-						<div class="newsletter-divider"></div>
 					</div>
 				</div>
-			</div>
-			<div class="footer-divider"></div>
-			<div class="footer-copyright">2024summer</div>
-		</div>
-	</div>
-</section>
 
+				<div class="banner">
+					<img
+						loading="lazy"
+						srcset="
+							https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=100   100w,
+							https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=200   200w,
+							https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=400   400w,
+							https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=800   800w,
+							https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1200 1200w,
+							https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=1600 1600w,
+							https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345&width=2000 2000w,
+							https://cdn.builder.io/api/v1/image/assets/TEMP/c92998e76f5ea324304657d4b9f1af207da98e6675d02aa9044609e42a63362c?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345
+						"
+						class="banner-image"
+					/>
+					<div class="banner-content">
+						<div class="banner-title">Book</div>
+						<div class="breadcrumb">
+							<div class="breadcrumb-home">Home</div>
+							<img
+								loading="lazy"
+								src="https://cdn.builder.io/api/v1/image/assets/TEMP/db13939cabd153a09de09c25864d1f622bda5d116dbe6552d6605aca283c27a4?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
+								class="breadcrumb-icon"
+							/>
+							<div class="breadcrumb-shop">Book</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="filters-container">
+					<div class="filters-header">
+						<div class="filter">
+							<img
+								loading="lazy"
+								src="https://cdn.builder.io/api/v1/image/assets/TEMP/d9889a04eb6c2c4b56eed2007281a7e5a6a8f4b12ed38c874a2483e2990c951d?placeholderIfAbsent=true&apiKey=df7b825baf8b4b6784bc821b6e180345"
+								class="filter-icon"
+							/>
+							<div>Filter</div>
+						</div>
+						<div class="filters-summary">
+							<div class="divider"></div>
+							<div class="results-info">
+								Showing
+								{{(page_current-1)*24+1}}–{{page_current*24}} of
+								{{books_count}} results
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="product-list">
+					{% for book in books%}
+
+					<button
+						class="product-card"
+						onclick="set_split_view_data('{{ book['book_key'] }}','{{ book['name'] }}','{{ book['author'] }}','{{ book['publisher'] }}','{{ book['date'] }}','{{ book['cover'] }}','{{ book['place'] }}','{{ book['name'] }}')"
+					>
+						<div class="product-thumbnail">
+							<img
+								loading="lazy"
+								src="{{ book['cover'] }}"
+								alt="{{ book['cover'] }}"
+							/>
+						</div>
+						<div class="product-title-wrap">
+							<div class="product-title">{{ book['name'] }}</div>
+						</div>
+					</button>
+					{% endfor %}
+				</div>
+
+				<div class="pagination-container">
+					<div class="pagination">
+						{% if page_current != page_start %}
+						<a
+							class="pagination-np"
+							href="{{ url_for('bookshelf', page=page_current-1) }}"
+							>Previous</a
+						>
+						{% endif %} {% if page_current == page_start %}
+						<a
+							class="pagination-number active"
+							href="{{ url_for('bookshelf', page=page_start) }}"
+							>{{ page_start }}</a
+						>
+						{% if page_start+1 <= page_end %}
+						<a
+							class="pagination-number"
+							href="{{ url_for('bookshelf', page=page_start+1) }}"
+							>{{ page_start+1 }}</a
+						>
+						{% endif %} {% if page_start+2 <= page_end %}
+						<a
+							class="pagination-number"
+							href="{{ url_for('bookshelf', page=page_start+2) }}"
+							>{{ page_start+2 }}</a
+						>
+						{% endif %} {% elif page_current == page_end %} {% if
+						page_end-2 >= page_start %}
+						<a
+							class="pagination-number"
+							href="{{ url_for('bookshelf', page=page_end-2) }}"
+							>{{ page_end-2 }}</a
+						>
+						{% endif %} {% if page_end-1 >= page_start %}
+						<a
+							class="pagination-number"
+							href="{{ url_for('bookshelf', page=page_end-2) }}"
+							>{{ page_end-1 }}</a
+						>
+						{% endif %}
+						<a
+							class="pagination-number active"
+							href="{{ url_for('bookshelf', page=page_end) }}"
+							>{{ page_end }}</a
+						>
+						{% else %}
+						<a
+							class="pagination-number"
+							href="{{ url_for('bookshelf', page=page_current-1) }}"
+							>{{ page_current-1 }}</a
+						>
+						<a
+							class="pagination-number active"
+							href="{{ url_for('bookshelf', page=page_current) }}"
+							>{{ page_current }}</a
+						>
+						<a
+							class="pagination-number"
+							href="{{ url_for('bookshelf', page=page_current+1) }}"
+							>{{ page_current+1 }}</a
+						>
+						{% endif %} {% if page_current != page_end%}
+						<a
+							class="pagination-np"
+							href="{{ url_for('bookshelf', page=page_current-1) }}"
+							>Next</a
+						>
+						{% endif %}
+					</div>
+				</div>
+
+				<div class="footer" id="footer">
+					<div class="footer-inner">
+						<div class="footer-section">
+							<div class="footer-title">
+								臺灣大學星艦學院科幻社
+							</div>
+							<div class="footer-address">
+								第二學生活動中心
+								<br />
+								9F 921
+								<br />
+								ntusfa@gipo.ntu.edu.tw
+							</div>
+						</div>
+						<div class="footer-section">
+							<div class="footer-links-title">Links</div>
+							<div class="footer-link">IG</div>
+							<div class="footer-link">FB</div>
+							<div class="footer-link">About</div>
+							<div class="footer-link">Contact</div>
+						</div>
+						<div class="footer-section">
+							<div class="footer-help-title">Join Us</div>
+							<div class="footer-help-link">入社表單</div>
+							<div class="footer-help-link">社團規則</div>
+							<div class="footer-help-link">活動報名</div>
+						</div>
+						<div class="footer-section">
+							<div class="footer-newsletter-title">
+								Say Anything
+							</div>
+							<div class="footer-newsletter">
+								<div class="newsletter-prompt">
+									講師推薦、意見回饋......等
+								</div>
+								<div class="newsletter-divider"></div>
+								<div class="newsletter-submit">Transmit</div>
+								<div class="newsletter-divider"></div>
+							</div>
+						</div>
+					</div>
+					<div class="footer-divider"></div>
+					<div class="footer-copyright">2024summer</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<div class="right-side" id="right">
+		<!-- Embed pop-up.html here -->
+		<iframe
+			src="{{ url_for('side') }}"
+			frameborder="0"
+			onload="split_close_function()"
+			id="iframe"
+		></iframe>
+	</div>
+</div>
+<script>
+	const splitContainer = document.getElementById("split-container")
+	const right = document.getElementById("right")
+
+	function split_close_function() {
+		let iframe = document.getElementById("iframe")
+		let innerDoc = iframe.contentDocument || iframe.contentWindow.document
+		const pushBack = innerDoc.getElementById("push-back")
+		pushBack.addEventListener("click", () => {
+			splitContainer.classList.toggle("toggle")
+			right.classList.toggle("disappear")
+		})
+	}
+	function set_split_view_data(
+		isbn,
+		name,
+		author,
+		publisher,
+		date,
+		cover,
+		place,
+		borrow
+	) {
+		let iframe = document.getElementById("iframe")
+		let innerDoc = iframe.contentDocument || iframe.contentWindow.document
+		innerDoc.getElementById("book-title").innerHTML = String(name)
+		innerDoc.getElementById(
+			"book-details"
+		).innerHTML = `${isbn.substring(5)}/${place}/${borrow}`
+		innerDoc.getElementById(
+			"book-description"
+		).innerHTML = `作者 ${author} <br/>出版社 ${publisher}<br/> 出版年份 ${date}`
+		innerDoc.getElementById("book-cover-img").src = cover
+
+		splitContainer.classList.remove("toggle")
+		right.classList.remove("disappear")
+	}
+</script>
 
 {% endblock %}

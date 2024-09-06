@@ -1,4 +1,4 @@
-from flask import render_template, current_app, request
+from flask import render_template, current_app, request, redirect
 import time
 import math
 import pickle
@@ -77,9 +77,16 @@ def create_routes(app):
                 books.append(book_details)
             i+=1
         book_end = i+book_start 
-        print(books)
+        print('aaa')
         return render_template('bookshelf.html', books=books, books_count =len(book_keys), page_current = page, page_start = page_start, page_end = page_end)
-
+    @app.route('/side')
+    def side():
+        return render_template('side.html')
+    @app.route('/side', methods=['POST'])
+    def borrow_book():
+        userID = request.form['user-id']
+        print(userID)
+        return redirect(request.referrer)
     @app.route('/book/<isbn>')
     def book_detail(isbn):
         # book_key = f'book:{isbn}'
