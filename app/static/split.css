@@ -4,7 +4,9 @@ html {
 	padding: 0;
 	height: 100%;
 	font-family: Arial, sans-serif;
-	overflow: hidden;
+}
+body{
+	overflow-x: hidden;
 }
 
 .grid-container {
@@ -21,7 +23,6 @@ html {
 }
 
 .left-side {
-	padding: 20px;
 	background-color: #ffffff;
 	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 	height: 100%;
@@ -30,16 +31,15 @@ html {
 
 .right-side {
 	height: 100%;
-	padding: 20px;
 	background-color: #ffffff;
 	transition: 0.7s;
-	width: 34vw;
+	/* width: 34vw; */
 	/* display: none; */
 	box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* 另一側的陰影 */
 }
 
+
 .right-side.disappear {
-	padding: 20px 0px;
 }
 
 iframe {

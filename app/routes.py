@@ -41,6 +41,7 @@ def create_routes(app):
             # showing from books[book_start] to books[book_end]
             book_start = (page-1)*books_per_page
             book_end = page*books_per_page
+            print(page_end)
             i = 0
 
             for key in book_keys: 
@@ -50,9 +51,11 @@ def create_routes(app):
                     # added book_key in book_details
                     book_details['book_key'] = key
                     books.append(book_details)
+                if i>=book_end:
+                    break
                 i+=1
-            book_end = i + book_start
-            return render_template('bookshelf.html', books=books, books_count =len(book_keys), page_current = page, page_start = page_start, page_end = page_end)
+            book_end = i
+            return render_template('bookshelf.html', books=books, books_count =len(book_keys), page_current = page, page_start = page_start, page_end = page_end, book_start=book_start+1, book_end = book_end)
     @app.route('/bookshelf/<page>')
     def bookshelf(page):
         
@@ -67,6 +70,7 @@ def create_routes(app):
         book_start = (page-1)*books_per_page
         book_end = page*books_per_page
         i = 0
+        print(len(book_keys))
 
         for key in book_keys: 
             if i>=book_start and i<book_end:
@@ -75,17 +79,21 @@ def create_routes(app):
                 # added book_key in book_details
                 book_details['book_key'] = key
                 books.append(book_details)
+            if i>=book_end:
+                break
             i+=1
-        book_end = i+book_start 
-        print('aaa')
-        return render_template('bookshelf.html', books=books, books_count =len(book_keys), page_current = page, page_start = page_start, page_end = page_end)
+        book_end = i 
+        return render_template('bookshelf.html', books=books, books_count =len(book_keys), page_current = page, page_start = page_start, page_end = page_end, book_start=book_start+1, book_end=book_end)
     @app.route('/side')
     def side():
         return render_template('side.html')
     @app.route('/side', methods=['POST'])
     def borrow_book():
-        userID = request.form['user-id']
-        print(userID)
+        ## get userID and bookID from form(borrow)
+        userID = request.form['userId']
+        bookID = request.form['bookId']
+        print(userID, bookID)
+        # TODO: send borrow request to database
         return redirect(request.referrer)
     @app.route('/book/<isbn>')
     def book_detail(isbn):

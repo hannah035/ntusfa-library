@@ -97,8 +97,7 @@
 						<div class="filters-summary">
 							<div class="divider"></div>
 							<div class="results-info">
-								Showing
-								{{(page_current-1)*24+1}}–{{page_current*24}} of
+								Showing {{book_start}}–{{book_end}} of
 								{{books_count}} results
 							</div>
 						</div>
@@ -190,7 +189,7 @@
 						{% endif %} {% if page_current != page_end%}
 						<a
 							class="pagination-np"
-							href="{{ url_for('bookshelf', page=page_current-1) }}"
+							href="{{ url_for('bookshelf', page=page_current+1) }}"
 							>Next</a
 						>
 						{% endif %}
@@ -249,7 +248,7 @@
 		<iframe
 			src="{{ url_for('side') }}"
 			frameborder="0"
-			onload="split_close_function()"
+			onload="split_close_function('{{ books[0]['book_key'] }}','{{ books[0]['name'] }}','{{ books[0]['author'] }}','{{ books[0]['publisher'] }}','{{ books[0]['date'] }}','{{ books[0]['cover'] }}','{{ books[0]['place'] }}','{{ books[0]['name'] }}' )"
 			id="iframe"
 		></iframe>
 	</div>
@@ -257,15 +256,28 @@
 <script>
 	const splitContainer = document.getElementById("split-container")
 	const right = document.getElementById("right")
-
-	function split_close_function() {
-		let iframe = document.getElementById("iframe")
-		let innerDoc = iframe.contentDocument || iframe.contentWindow.document
+	let iframe
+	let innerDoc
+	function split_close_function(isbn,name, author, publisher, date, cover, place, borrow) {
+		iframe = document.getElementById("iframe")
+		innerDoc = iframe.contentDocument || iframe.contentWindow.document
 		const pushBack = innerDoc.getElementById("push-back")
 		pushBack.addEventListener("click", () => {
 			splitContainer.classList.toggle("toggle")
 			right.classList.toggle("disappear")
 		})
+		innerDoc.getElementById("book-title").innerHTML = String(name)
+		innerDoc.getElementById("book-details").innerHTML = `${isbn.substring(
+			5
+		)}/${place}/可借閱`
+		innerDoc.getElementById(
+			"book-description"
+		).innerHTML = `作者 ${author} <br/>出版社 ${publisher}<br/> 出版年份 ${date}`
+		innerDoc.getElementById("book-cover-img").src = cover
+		innerDoc.getElementById("book-id").value = String(isbn)
+		
+
+		
 	}
 	function set_split_view_data(
 		isbn,
@@ -277,20 +289,23 @@
 		place,
 		borrow
 	) {
-		let iframe = document.getElementById("iframe")
-		let innerDoc = iframe.contentDocument || iframe.contentWindow.document
+		iframe = document.getElementById("iframe")
+		innerDoc = iframe.contentDocument || iframe.contentWindow.document
 		innerDoc.getElementById("book-title").innerHTML = String(name)
-		innerDoc.getElementById(
-			"book-details"
-		).innerHTML = `${isbn.substring(5)}/${place}/${borrow}`
+		innerDoc.getElementById("book-details").innerHTML = `${isbn.substring(
+			5
+		)}/${place}/可借閱`
 		innerDoc.getElementById(
 			"book-description"
 		).innerHTML = `作者 ${author} <br/>出版社 ${publisher}<br/> 出版年份 ${date}`
 		innerDoc.getElementById("book-cover-img").src = cover
+		innerDoc.getElementById("book-id").value = String(isbn)
 
 		splitContainer.classList.remove("toggle")
 		right.classList.remove("disappear")
 	}
+	
+	
 </script>
 
 {% endblock %}

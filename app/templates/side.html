@@ -264,7 +264,7 @@
 	</div>
 
 	<!-- Borrow Form Section -->
-	<form class="borrow-section" method="POST">
+	<form class="borrow-section" id="borrow-form" method="POST">
 		<label for="user-id" class="visually-hidden">Enter Your ID</label>
 		<input
 			type="text"
@@ -274,6 +274,7 @@
 			placeholder="Enter Your ID"
 			aria-label="Enter Your ID"
 		/>
+		<input type="hidden" name="book-id" id="book-id" />
 		<button type="submit" class="borrow-button">Borrow</button>
 	</form>
 	<!-- Rating Section -->
@@ -289,11 +290,39 @@
 
 	<!-- Review Section -->
 	<div class="review-section">
-		<textarea
+		<form id= 'review'>
+			<textarea
 			class="review-input"
 			aria-label="Write your review"
 			placeholder="1-5&#10;暱稱(可空白)&#10;評論&#10;"
-		></textarea>
-		<button class="add-review-button">+ Review</button>
+			></textarea>
+			<button class="add-review-button">+ Review</button>
+		</form>
+		
 	</div>
+	<script
+		src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+		crossorigin="anonymous"
+	></script>
+
+	<script>
+		// prevent side to reload when submitting form
+		$(document).ready(function () {
+			$("form").submit(function (event) {
+				event.preventDefault()
+				$.ajax({
+					type: "POST",
+					url: "/side",
+					data: {
+						bookId: $("#book-id").val(),
+						userId: $("#user-id").val(),
+					},
+					success: function(){
+						document.getElementById('user-id').value = 'success!'
+					}
+				})
+			})
+		})
+	</script>
 </section>
