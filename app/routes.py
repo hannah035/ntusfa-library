@@ -70,7 +70,6 @@ def create_routes(app):
         book_start = (page-1)*books_per_page
         book_end = page*books_per_page
         i = 0
-        print(len(book_keys))
 
         for key in book_keys: 
             if i>=book_start and i<book_end:
@@ -90,13 +89,19 @@ def create_routes(app):
     @app.route('/side', methods=['POST'])
     def borrow_book():
         ## get userID and bookID from form(borrow)
-        # userID = request.form['userId']
-        bookID = request.form['bookId']
-        review = request.form['review']
-        current_app.redis.rpush(f'review:{bookID}', review)
+        identifier = request.form['identifier']
+        if identifier == 'review':
+            bookID = request.form['bookId']
+            review = request.form['review']
+            print('review', bookID, review)
+        else:
+            bookID = request.form['bookId']
+            userID = request.form['userId']
+            print('borrow',bookID, userID)
+       
+        # current_app.redis.rpush(f'review:{bookID}', review)
+
         
-        # print(userID, bookID)
-        print(bookID, review)
         # TODO: send borrow request to database
         return redirect(request.referrer)
     @app.route('/book/<isbn>')

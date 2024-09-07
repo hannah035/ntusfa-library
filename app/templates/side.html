@@ -310,7 +310,22 @@
 	<script>
 		// prevent side to reload when submitting form
 		$(document).ready(function () {
-			$("form").submit(function (event) {
+			$("#borrow-form").submit(function (event) {
+				event.preventDefault()
+				$.ajax({
+					type: "POST",
+					url: "/side",
+					data: {
+						bookId: $("#book-id").val(),
+						userId: $("#user-id").val(),
+						identifier: 'borrow',
+					},
+					success: function(){
+						document.getElementById('user-id').value = 'success!'
+					}
+				})
+			})
+			$("#review").submit(function (event) {
 				event.preventDefault()
 				$.ajax({
 					type: "POST",
@@ -318,6 +333,7 @@
 					data: {
 						bookId: $("#book-id").val(),
 						review: $("#review-text").val(),
+						identifier: 'review',
 					},
 					success: function(){
 						document.getElementById('review-text').value = 'success!'
