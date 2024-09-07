@@ -295,6 +295,7 @@
 			class="review-input"
 			aria-label="Write your review"
 			placeholder="1-5&#10;暱稱(可空白)&#10;評論&#10;"
+			id = 'review-text'
 			></textarea>
 			<button class="add-review-button">+ Review</button>
 		</form>
@@ -316,10 +317,10 @@
 					url: "/side",
 					data: {
 						bookId: $("#book-id").val(),
-						userId: $("#user-id").val(),
+						review: $("#review-text").val(),
 					},
 					success: function(){
-						document.getElementById('user-id').value = 'success!'
+						document.getElementById('review-text').value = 'success!'
 					}
 				})
 			})

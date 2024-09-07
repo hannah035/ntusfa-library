@@ -90,9 +90,13 @@ def create_routes(app):
     @app.route('/side', methods=['POST'])
     def borrow_book():
         ## get userID and bookID from form(borrow)
-        userID = request.form['userId']
+        # userID = request.form['userId']
         bookID = request.form['bookId']
-        print(userID, bookID)
+        review = request.form['review']
+        current_app.redis.rpush(f'review:{bookID}', review)
+        
+        # print(userID, bookID)
+        print(bookID, review)
         # TODO: send borrow request to database
         return redirect(request.referrer)
     @app.route('/book/<isbn>')
