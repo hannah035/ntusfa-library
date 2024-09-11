@@ -97,9 +97,10 @@ def create_routes(app):
         else:
             bookID = request.form['bookId']
             userID = request.form['userId']
+            current_app.redis.hset(bookID,'borrow', userID)
             print('borrow',bookID, userID)
        
-        # current_app.redis.rpush(f'review:{bookID}', review)
+        
 
         
         # TODO: send borrow request to database
