@@ -2,7 +2,7 @@
 {% extends "layout.html" %} {% block content %}
 
 <div class="grid-container" id="split-container">
-	<div class="left-side">
+	<div class="left-side" id="left-side">
 		<section id="bookshelf">
 			<link
 				rel="stylesheet"
@@ -243,41 +243,28 @@
 			</div>
 		</section>
 	</div>
-	<div class="right-side" id="right">
+	<div class="right-side initial" id="right-side">
 		<!-- Embed pop-up.html here -->
 		<iframe
 			src="{{ url_for('side') }}"
 			frameborder="0"
-			onload="split_close_function('{{ books[0]['book_key'] }}','{{ books[0]['name'] }}','{{ books[0]['author'] }}','{{ books[0]['publisher'] }}','{{ books[0]['date'] }}','{{ books[0]['cover'] }}','{{ books[0]['place'] }}','{{ books[0]['name'] }}' )"
+			onload="split_close_function()"
 			id="iframe"
 		></iframe>
 	</div>
 </div>
 <script>
 	const splitContainer = document.getElementById("split-container")
-	const right = document.getElementById("right")
+	const right = document.getElementById("right-side")
+	const left = document.getElementById("left-side")
 	let iframe
 	let innerDoc
-	function split_close_function(isbn,name, author, publisher, date, cover, place, borrow) {
+	function split_close_function() {
+		setTimeout(() => {
+			right.classList.remove("initial");
+		}, 200)
 		iframe = document.getElementById("iframe")
 		innerDoc = iframe.contentDocument || iframe.contentWindow.document
-		const pushBack = innerDoc.getElementById("push-back")
-		pushBack.addEventListener("click", () => {
-			splitContainer.classList.toggle("toggle")
-			right.classList.toggle("disappear")
-		})
-		innerDoc.getElementById("book-title").innerHTML = String(name)
-		innerDoc.getElementById("book-details").innerHTML = `${isbn.substring(
-			5
-		)}/${place}/可借閱`
-		innerDoc.getElementById(
-			"book-description"
-		).innerHTML = `作者 ${author} <br/>出版社 ${publisher}<br/> 出版年份 ${date}`
-		innerDoc.getElementById("book-cover-img").src = cover
-		innerDoc.getElementById("book-id").value = String(isbn)
-		
-
-		
 	}
 	function set_split_view_data(
 		isbn,
@@ -289,6 +276,7 @@
 		place,
 		borrow
 	) {
+		// set innerHTML of side.html
 		iframe = document.getElementById("iframe")
 		innerDoc = iframe.contentDocument || iframe.contentWindow.document
 		innerDoc.getElementById("book-title").innerHTML = String(name)
@@ -301,11 +289,10 @@
 		innerDoc.getElementById("book-cover-img").src = cover
 		innerDoc.getElementById("book-id").value = String(isbn)
 
-		splitContainer.classList.remove("toggle")
-		right.classList.remove("disappear")
+		//make right appear and left shrink
+		right.classList.add("appear")
+		left.classList.add("appear")
 	}
-	
-	
 </script>
 
 {% endblock %}
