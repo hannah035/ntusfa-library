@@ -1,5 +1,6 @@
 :root {
 	--search_bar_height: 2vw;
+	--animation-duration: 0.7s;
 }
 a{
 	all:unset;

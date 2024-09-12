@@ -10,36 +10,47 @@ body{
 }
 
 .grid-container {
-	display: grid;
-	grid-template-columns: 2fr 1fr; /* Two-thirds left, one-third right */
 	height: 100vh; /* Full viewport height */
-	transition: 1s;
+	transition: var(--animation-duration);
 	width: 100vw;
-}
-.grid-container.toggle {
-	grid-template-columns: 3fr 1fr;
+	position: inherit;
 	overflow-x: hidden;
-	width: 134vw;
+	overflow-y: scroll;
 }
 
 .left-side {
 	background-color: #ffffff;
 	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* 添加陰影 */
 	height: 100%;
-	overflow-y: scroll;
+	width: 100vw;
+	transition: var(--animation-duration);
+}
+.left-side.appear{
+	width: 66vw;
 }
 
 .right-side {
 	height: 100%;
 	background-color: #ffffff;
-	transition: 0.7s;
-	/* width: 34vw; */
-	/* display: none; */
+	transition: var(--animation-duration);
+	width: 34vw;
+	position: absolute;
+	top: 0;
+	left: 100vw;
+	display: block;
+	transition-behavior: allow-discrete;
+	opacity: 0;
 	box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1); /* 另一側的陰影 */
 }
+.right-side.initial{
+	display: none;
+	opacity: 0;
+}
 
-
-.right-side.disappear {
+.right-side.appear {
+	left: 66vw;
+	display: block;
+	opacity: 1;
 }
 
 iframe {

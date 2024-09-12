@@ -265,6 +265,11 @@
 		}, 200)
 		iframe = document.getElementById("iframe")
 		innerDoc = iframe.contentDocument || iframe.contentWindow.document
+		const pushBack = innerDoc.getElementById("push-back")
+		pushBack.addEventListener("click", () => {
+			left.classList.remove("appear")
+			right.classList.remove("appear")
+		})
 	}
 	function set_split_view_data(
 		isbn,
