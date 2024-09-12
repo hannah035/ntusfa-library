@@ -2,13 +2,14 @@ from flask import render_template, current_app, request, redirect
 import time
 import math
 import pickle
+import redis
 
 
 books_per_page = 48
 
 def load_dict():
     global mapp
-    with open("app/datas/mapp.pickle", "rb") as f:
+    with open("./datas/mapp.pickle", "rb") as f:
         mapp = pickle.load(f)
 
 def create_routes(app):
