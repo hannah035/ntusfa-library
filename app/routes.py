@@ -8,7 +8,7 @@ books_per_page = 48
 
 def load_dict():
     global mapp
-    with open("ntusfa-library/app/datas/mapp.pickle", "rb") as f:
+    with open("./datas/mapp.pickle", "rb") as f:
         mapp = pickle.load(f)
 
 def create_routes(app):
